@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: TestVar
+      run: echo $UPLOAD_AZURE
     - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
       run:  echo "${{ github.event.inputs.distinct_id }}"
     - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2
