@@ -30,8 +30,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: TestVar
-      run: echo $UPLOAD_AZURE
+    - name: EchoTestVar
+      run: echo "${{ vars.UPLOAD_AZURE }}"
+    - name: TestVarTrue
+      if: ${{ vars.UPLOAD_AZURE == true }}
+      run: echo "true"
+    - name: TestVarFalse
+      if: ${{ vars.UPLOAD_AZURE == false }}
+      run: echo "false"
     - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
       run:  echo "${{ github.event.inputs.distinct_id }}"
     - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2
