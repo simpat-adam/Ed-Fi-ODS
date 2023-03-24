@@ -23,7 +23,7 @@ env:
   REPOSITORY_DISPATCH_BRANCH: ${{ github.event.client_payload.branch }}
   HEAD_REF:  ${{ GITHUB.HEAD_REF }}
   REF_NAME:  ${{ GITHUB.REF_NAME }}
-  REPO_NAME: ${{ github.event.repository.name }}
+  REPO_NAME: ${{ GITHUB.REPOSITORY_OWNER }}
 
 jobs:
   build:
