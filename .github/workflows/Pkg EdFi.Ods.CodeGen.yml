@@ -31,14 +31,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: EchoTestVar
-      run: echo "${{ env.REPO_NAME }}"
-    - name: TestVarTrue
-      if: ${{ env.AZURE_ARTIFACT_NUGET_KEY != '' }}
-      run: echo "Have Secret"
-    - name: TestVarFalse
-      if: ${{ env.AZURE_ARTIFACT_NUGET_KEY == '' }}
-      run: echo "Do Not Have Secret"
+    - name: Check for secret
+      if: ${{ REPO_NAME == 'simpat-adam' && env.AZURE_ARTIFACT_NUGET_KEY == '' }}
+      run: exit 1 
     - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
       run:  echo "${{ github.event.inputs.distinct_id }}"
     - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2
